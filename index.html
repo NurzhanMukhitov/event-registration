@@ -25,12 +25,13 @@
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0,0,0,0.5);
+      z-index: 1;
     }
 
     /* Стили для формы UniSender */
     section.hero form[name="subscribtion_form"] {
-        position: relative; /* Устанавливаем позиционирование */
-        z-index: 999;       /* Делаем слой выше, чем у ::before (увеличено) */
+        position: relative;
+        z-index: 2;
         max-width: 400px; 
         width: 90%;
     }
