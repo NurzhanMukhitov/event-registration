@@ -26,6 +26,65 @@
       top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0,0,0,0.5);
     }
+
+    /* Стили для адаптации формы UniSender */
+    #unisender-subscribe-form form table[style*="max-width"] {
+        max-width: 100% !important; /* Убираем ограничение по ширине */
+        background-color: transparent !important; /* Убираем белый фон формы, если он мешает */
+    }
+    #unisender-subscribe-form form td[style*="padding: 25px"] {
+        padding: 15px !important; /* Уменьшаем основной отступ */
+    }
+    #unisender-subscribe-form form td[style*="padding: 8px"] {
+        padding: 5px 0 !important; /* Уменьшаем отступы ячеек с полями */
+    }
+    #unisender-subscribe-form form label[style*="display: inline-block"] {
+        display: block !important; /* Лейблы над полями */
+        width: 100% !important;
+        text-align: left !important;
+        padding-bottom: 3px !important;
+        font-size: 0.9rem !important; /* Чуть уменьшим шрифт лейбла */
+        color: #eee !important; /* Делаем текст светлее на тёмном фоне */
+    }
+    #unisender-subscribe-form form div[style*="display: inline-block"][style*="width: 66%"] {
+        width: 100% !important; /* Инпуты на всю ширину */
+        display: block !important;
+    }
+    #unisender-subscribe-form form input[type="text"],
+    #unisender-subscribe-form form input[type="email"],
+    #unisender-subscribe-form form input[type="tel"] {
+        height: auto !important;
+        padding: 0.6rem 0.5rem !important; /* Сделаем отступы комфортнее */
+        font-size: 1rem !important;
+        line-height: 1.4 !important; /* Для лучшей читаемости */
+        background-color: rgba(255, 255, 255, 0.9) !important; /* Слегка прозрачный фон полей */
+        border: 1px solid #ccc !important;
+    }
+    #unisender-subscribe-form form input[type="checkbox"] {
+        width: 18px !important;
+        height: 18px !important;
+        vertical-align: middle;
+        background-color: rgba(255, 255, 255, 0.9) !important;
+    }
+    #unisender-subscribe-form form span[style*="font-family:Arial"] {
+        font-size: 0.9rem !important; /* Уменьшим текст согласия */
+        vertical-align: middle;
+        color: #eee !important; /* Делаем текст светлее */
+    }
+    #unisender-subscribe-form form button {
+        padding: 0.75rem !important;
+        font-size: 1rem !important;
+        background-color: #007BFF !important; /* Возвращаем синий цвет кнопке */
+        color: white !important;
+        border: none !important;
+        border-radius: 4px !important; /* Добавляем скругление */
+        cursor: pointer;
+        width: 100%; /* Кнопка на всю ширину */
+    }
+    #unisender-subscribe-form form td[style*="background-color: rgb(136, 136, 136)"] {
+        background-color: transparent !important; /* Убираем серый фон у ячейки кнопки */
+        padding: 15px 0 0 0 !important; /* Отступ сверху для кнопки */
+    }
   </style>
 </head>
 <body>
