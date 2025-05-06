@@ -161,7 +161,7 @@
         </table>                    </td>                </tr>            </tbody>
         </table>        <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]--><!--[if (gte mso 9)|(IE)]><table cellpadding="0" cellspacing="0" border="0" width="400" align="center"><tr><td><![endif]-->                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="width: 100%; table-layout: fixed; height: auto; border-collapse: collapse; border-spacing: 0px; display: inline-table; vertical-align: top; font-size: medium;">                <tbody>
         <tr>                    <td style="width: 100%; padding: 8px; text-align: center;" valign="top">                        <table border="0" cellspacing="0" cellpadding="0" style="height: 100%; width: 100%; table-layout: fixed; border-spacing: 0px; border-collapse: collapse;">                            <tbody>
-        <tr>                                <td style="width:100%;">                                            <div style="display:inline-block; width:100%;">            <ul style="margin: 0; padding: 0; display: inline-block;">                <li style="list-style:none; margin: 0; padding: 0; display: inline-block;">                    <input type="checkbox" name="argument-with-terms" data-virtual-name="argument-with-terms" style="font: 12px / 1 Arial, Helvetica; vertical-align: middle; border-radius: 3px; padding: 0px 8px; box-sizing: border-box; border: none; background-color: rgba(255, 255, 255, 0.9) !important; background-image: none; width: 18px !important; height: 18px !important;" _fullerrormessage="Это поле обязательно" _required="1">                    <span style="display: inline-block; padding: 0px 0px 1px; vertical-align: middle; box-sizing: border-box; font-size: 0.9rem !important; color: #ddd !important;" tabindex="0" spellcheck="false" role="textbox" aria-label="false" aria-describedby="cke_35"> <span style="font-family:Arial,Helvetica,sans-serif;">Я согласен с политикой конфиденциальности</span> </span>                </li>            </ul>            <div class="error-block" style="display:none;color:#ff592d;font:11px/18px Arial;"></div>        </div>                                    </td>                            </tr>                        </tbody>
+        <tr>                                <td style="width:100%;">                                            <div style="display:inline-block; width:100%;">            <ul style="margin: 0; padding: 0; display: inline-block;">                <li style="list-style:none; margin: 0; padding: 0; display: inline-block;">                    <input type="checkbox" name="argument-with-terms" data-virtual-name="argument-with-terms" style="font: 12px / 1 Arial, Helvetica; vertical-align: middle; border-radius: 3px; padding: 0px 8px; box-sizing: border-box; border: none; background-color: rgba(255, 255, 255, 0.9) !important; background-image: none; width: 18px !important; height: 18px !important;" _fullerrormessage="Это поле обязательно" _required="1">                    <span style="display: inline-block; padding: 0px 0px 1px; vertical-align: middle; box-sizing: border-box; font-size: 0.9rem !important; color: #ddd !important;" tabindex="0" spellcheck="false" role="textbox" aria-label="false" aria-describedby="cke_35"> <span style="font-family:Arial,Helvetica,sans-serif;">Я согласен с политикой конфиденциальности</span> </span>                </li>            </ul>            <div class="error-block" id="consent-error" style="display:none;color:#ff592d;font:11px/18px Arial;margin-top:4px;"></div>            <div class="error-block" style="display:none;color:#ff592d;font:11px/18px Arial;"></div>        </div>                                    </td>                            </tr>                        </tbody>
         </table>                    </td>                </tr>            </tbody>
         </table>        <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]--><!--[if (gte mso 9)|(IE)]><table cellpadding="0" cellspacing="0" border="0" width="400" align="center"><tr><td><![endif]-->                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="width: 100%; table-layout: fixed; height: auto; border-collapse: collapse; border-spacing: 0px; display: inline-table; vertical-align: top; font-size: medium;">                <tbody>
         <tr>                    <td style="width: 100%; background-image: none; min-height: 0px; height: 0px; padding: 15px 0 0 0 !important;" valign="top">                        <table border="0" cellspacing="0" cellpadding="0" style="height: 100%; width: 100%; table-layout: fixed; border-spacing: 0px; border-collapse: collapse; min-height: 0px;">                            <tbody>
@@ -245,11 +245,18 @@
             setFieldError(phoneInput, 'Телефон должен начинаться с +7 или 8 и содержать 10 цифр после префикса. Например: +79001234567 или 89001234567.');
             isValid = false;
           }
+
+          // Только для чекбокса показываем ошибку под ним
+          const consentErrorBlock = document.getElementById('consent-error');
+          if (consentErrorBlock) consentErrorBlock.style.display = 'none';
           if (consentCheckbox && !consentCheckbox.checked) {
-              messageDiv.textContent = 'Пожалуйста, подтвердите согласие с политикой конфиденциальности.';
-              messageDiv.style.background = 'rgba(255, 100, 0, 0.7)';
-              messageDiv.style.display = 'block';
+              if (consentErrorBlock) {
+                  consentErrorBlock.textContent = 'Пожалуйста, подтвердите согласие с политикой конфиденциальности.';
+                  consentErrorBlock.style.display = 'block';
+              }
               isValid = false; 
+          } else {
+              if (consentErrorBlock) consentErrorBlock.style.display = 'none';
           }
 
           if (!isValid) {
