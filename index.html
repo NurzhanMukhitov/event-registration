@@ -27,6 +27,14 @@
       background: rgba(0,0,0,0.5);
     }
 
+    /* Стили для формы UniSender */
+    section.hero form[name="subscribtion_form"] {
+        position: relative; /* Устанавливаем позиционирование */
+        z-index: 2;       /* Делаем слой выше, чем у ::before */
+        max-width: 400px; 
+        width: 90%;
+    }
+
     /* Стили для адаптации формы UniSender */
     #unisender-subscribe-form form table[style*="max-width"] {
         max-width: 100% !important; /* Убираем ограничение по ширине */
