@@ -99,6 +99,27 @@
         background-color: transparent !important; /* Убираем серый фон у ячейки кнопки */
         padding: 15px 0 0 0 !important; /* Отступ сверху для кнопки */
     }
+
+    /* Убираем синюю обводку у полей при фокусе */
+    section.hero form#registration-form-api input[type="text"]:focus,
+    section.hero form#registration-form-api input[type="email"]:focus,
+    section.hero form#registration-form-api input[type="tel"]:focus {
+        outline: none !important;
+        border: 1px solid #aaa !important;
+        box-shadow: 0 0 3px rgba(120, 120, 120, 0.5) !important;
+    }
+
+    /* Стили для кнопки Регистрация - делаем светло-серой */
+    section.hero form#registration-form-api table td[style*="background-color"] button[type="submit"],
+    section.hero form#registration-form-api button[type="submit"] /* Добавим более общий селектор на всякий случай */
+    {
+        background-color: #B0B0B0 !important; 
+        color: #333 !important; 
+    }
+    /* Если фон кнопки задаётся через её родительскую ячейку TD */
+    section.hero form#registration-form-api table td[style*="background-color: #007BFF !important"] {
+        background-color: transparent !important; /* Убеждаемся, что старый синий фон ячейки кнопки убран */
+    }
   </style>
 </head>
 <body>
