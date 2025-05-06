@@ -27,7 +27,7 @@
       background: rgba(0,0,0,0.5);
     }
     /* Контейнер с контентом поверх фона */
-    .container {
+    .main-content-wrapper {
       position: relative;
       z-index: 1;
       width: 90%;
@@ -37,34 +37,34 @@
       border-radius: 8px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.3);
     }
-    .container h1 {
+    .main-content-wrapper h1 {
       margin-bottom: 1rem;
       font-size: 1.5rem;
       text-align: center;
     }
-    .container form {
+    .main-content-wrapper form {
       display: flex;
       flex-direction: column;
     }
-    .container label {
+    .main-content-wrapper label {
       margin-top: 0.75rem;
       font-size: 0.9rem;
     }
-    .container input[type="text"],
-    .container input[type="email"],
-    .container input[type="tel"] {
+    .main-content-wrapper input[type="text"],
+    .main-content-wrapper input[type="email"],
+    .main-content-wrapper input[type="tel"] {
       padding: 0.5rem;
       margin-top: 0.25rem;
       border: 1px solid #ccc;
       border-radius: 4px;
       font-size: 1rem;
     }
-    .container .consent {
+    .main-content-wrapper .consent {
       display: flex;
       align-items: center;
       margin-top: 1rem;
     }
-    .container .consent input[type="checkbox"] {
+    .main-content-wrapper .consent input[type="checkbox"] {
       margin-right: 0.5rem;
       width: 20px;
       height: 20px;
@@ -72,11 +72,11 @@
       min-height: 20px;
       box-sizing: border-box;
     }
-    .container .consent label {
+    .main-content-wrapper .consent label {
       line-height: 1;
       font-size: 1rem;
     }
-    .container button {
+    .main-content-wrapper button {
       margin-top: 1.5rem;
       padding: 0.75rem;
       font-size: 1rem;
@@ -86,7 +86,7 @@
       background-color: #007BFF;
       color: white;
     }
-    .container button:disabled {
+    .main-content-wrapper button:disabled {
       background-color: #aaa;
       cursor: not-allowed;
     }
@@ -94,7 +94,7 @@
 </head>
 <body>
   <section class="hero">
-    <div class="container">
+    <div class="main-content-wrapper">
       <h1><!-- Ваш Call to Action здесь --></h1>
       <div id="static-form-container" data-url="https://cp.unisender.com/ru/v5/subscribe-form/view/6n7rszsjjq9kmezfyac5jexn4szday1eic86yr9y" data-settings="6wp63esy6s85ji7iegwtqeuuaaswa3pkjeoyh7ijxkpb1491xcjxo">
         <form method="POST" action="https://cp.unisender.com/ru/subscribe?hash=63apa33i9iband7iegwtqeuuaawenujhknja1aaee3ifr6j4mesyy" name="subscribtion_form" us_mode="embed">
