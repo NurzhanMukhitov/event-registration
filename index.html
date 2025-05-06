@@ -42,17 +42,17 @@
     }
 
     /* Стили для адаптации формы UniSender */
-    #unisender-subscribe-form form table[style*="max-width"] {
+    form#registration-form-api table[style*="max-width"] {
         max-width: 100% !important; /* Убираем ограничение по ширине */
         background-color: transparent !important; /* Убираем белый фон формы, если он мешает */
     }
-    #unisender-subscribe-form form td[style*="padding: 25px"] {
+    form#registration-form-api td[style*="padding: 25px"] {
         padding: 15px !important; /* Уменьшаем основной отступ */
     }
-    #unisender-subscribe-form form td[style*="padding: 8px"] {
+    form#registration-form-api td[style*="padding: 8px"] {
         padding: 5px 0 !important; /* Уменьшаем отступы ячеек с полями */
     }
-    #unisender-subscribe-form form label[style*="display: inline-block"] {
+    form#registration-form-api label[style*="display: inline-block"] {
         display: block !important; /* Лейблы над полями */
         width: 100% !important;
         text-align: left !important;
@@ -60,13 +60,13 @@
         font-size: 0.9rem !important; /* Чуть уменьшим шрифт лейбла */
         color: #ddd !important; /* Делаем текст светлее на тёмном фоне (изменено на #ddd) */
     }
-    #unisender-subscribe-form form div[style*="display: inline-block"][style*="width: 66%"] {
+    form#registration-form-api div[style*="display: inline-block"][style*="width: 66%"] {
         width: 100% !important; /* Инпуты на всю ширину */
         display: block !important;
     }
-    #unisender-subscribe-form form input[type="text"],
-    #unisender-subscribe-form form input[type="email"],
-    #unisender-subscribe-form form input[type="tel"] {
+    form#registration-form-api input[type="text"],
+    form#registration-form-api input[type="email"],
+    form#registration-form-api input[type="tel"] {
         height: auto !important;
         padding: 0.6rem 0.5rem !important; /* Сделаем отступы комфортнее */
         font-size: 1rem !important;
@@ -74,18 +74,19 @@
         background-color: rgba(255, 255, 255, 0.9) !important; /* Слегка прозрачный фон полей */
         border: 1px solid #ccc !important;
     }
-    #unisender-subscribe-form form input[type="checkbox"] {
+    form#registration-form-api input[type="checkbox"] {
         width: 18px !important;
         height: 18px !important;
         vertical-align: middle;
         background-color: rgba(255, 255, 255, 0.9) !important;
+        accent-color: #757575 !important; /* Цвет галочки чекбокса */
     }
-    #unisender-subscribe-form form span[style*="font-family:Arial"] {
+    form#registration-form-api span[style*="font-family:Arial"] {
         font-size: 0.9rem !important; /* Уменьшим текст согласия */
         vertical-align: middle;
         color: #eee !important; /* Делаем текст светлее */
     }
-    #unisender-subscribe-form form button {
+    form#registration-form-api button {
         padding: 0.75rem !important;
         font-size: 1rem !important;
         background-color: #007BFF !important; /* Возвращаем синий цвет кнопке */
@@ -95,7 +96,7 @@
         cursor: pointer;
         width: 100%; /* Кнопка на всю ширину */
     }
-    #unisender-subscribe-form form td[style*="background-color: rgb(136, 136, 136)"] {
+    form#registration-form-api td[style*="background-color: rgb(136, 136, 136)"] {
         background-color: transparent !important; /* Убираем серый фон у ячейки кнопки */
         padding: 15px 0 0 0 !important; /* Отступ сверху для кнопки */
     }
@@ -109,17 +110,32 @@
         box-shadow: 0 0 3px rgba(120, 120, 120, 0.5) !important;
     }
 
-    /* Стили для кнопки Регистрация - делаем светло-серой */
-    section.hero form#registration-form-api table td[style*="background-color"] button[type="submit"],
-    section.hero form#registration-form-api button[type="submit"] /* Добавим более общий селектор на всякий случай */
-    {
+    /* Стили для кнопки Регистрация - новая попытка */
+    /* Нацеливаемся на TD, которая является родителем кнопки и имеет синий фон */
+    section.hero form#registration-form-api table table table td[align="center"][valign="middle"][style*="background-color: #007BFF"] {
+        background-color: #B0B0B0 !important; /* Новый серый фон для TD */
+    }
+
+    section.hero form#registration-form-api button[type="submit"] {
+        background-color: transparent !important; /* Кнопка остается прозрачной, фон от TD */
+        color: #333333 !important; /* Темный текст для кнопки */
+        width: auto !important; /* Автоматическая ширина по содержимому */
+        min-width: 150px; /* Минимальная ширина для читаемости */
+        padding: 0.75rem 2rem !important; /* Вертикальные и горизонтальные отступы */
+        border: none !important;
+        border-radius: 4px !important;
+        cursor: pointer;
+        font-size: 1rem !important;
+        display: inline-block !important; /* Чтобы width: auto работало корректно */
+    }
+
+    /* Старый селектор для TD кнопки, на всякий случай оставим, но новый выше должен быть точнее */
+    section.hero form#registration-form-api table td[style*="background-color: #007BFF"] { 
         background-color: #B0B0B0 !important; 
-        color: #333 !important; 
     }
-    /* Если фон кнопки задаётся через её родительскую ячейку TD */
-    section.hero form#registration-form-api table td[style*="background-color: #007BFF !important"] {
-        background-color: transparent !important; /* Убеждаемся, что старый синий фон ячейки кнопки убран */
-    }
+
+    /* Старый селектор для самой кнопки, по сути дублируется */
+    /* form#registration-form-api button { ... } */
   </style>
 </head>
 <body>
@@ -157,73 +173,123 @@
         </td></tr></tbody></table>
         <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
         </td></tr></tbody></table></div>
-        <input type="hidden" name="charset" value="UTF-8">
-        <input type="hidden" name="default_list_id" value="2">
-        <input type="hidden" name="overwrite" value="2">
-        <input type="hidden" name="is_v5" value="1">
       </form>
       <div id="form-message" style="display:none; margin-top: 1rem; padding: 1rem; background: rgba(0,0,0,0.7); border-radius: 5px; color: white; text-align: center;"></div>
     </section>
 
   <!-- force update -->
   <script>
-    document.getElementById('registration-form-api').addEventListener('submit', async function(e) {
-      e.preventDefault(); // Отменяем стандартную отправку
-      const form = e.target;
-      const messageDiv = document.getElementById('form-message');
-      const submitButton = form.querySelector('button[type="submit"]'); // Находим кнопку
-      messageDiv.style.display = 'none'; // Скрываем старое сообщение
+    document.addEventListener('DOMContentLoaded', function() {
+      // --- Блок изменения стилей кнопки полностью удалён ---
 
-      // Получаем данные из формы
-      const email = form.elements['email'].value;
-      const phone = form.elements['phone'].value;
-      const name = form.elements['f_1'].value; // Поле "Имя" имеет name="f_1"
-      const lastName = form.elements['f_2'].value; // Поле "Фамилия" имеет name="f_2"
-      const consentCheckbox = form.elements['argument-with-terms']; // Чекбокс
+      // Обработчик отправки формы
+      const registrationForm = document.getElementById('registration-form-api');
+      if (registrationForm) {
+        registrationForm.addEventListener('submit', async function(e) {
+          e.preventDefault(); 
+          const form = e.target; 
+          const submitButton = form.querySelector('button[type="submit"]');
+          const messageDiv = document.getElementById('form-message');
+          
+          const nameInput = form.elements['f_1'];
+          const lastNameInput = form.elements['f_2'];
+          const phoneInput = form.elements['phone'];
+          const emailInput = form.elements['email'];
+          const consentCheckbox = form.elements['argument-with-terms'];
 
-      // Проверка чекбокса согласия
-      if (consentCheckbox && !consentCheckbox.checked) {
-          messageDiv.textContent = 'Пожалуйста, подтвердите согласие с политикой конфиденциальности.';
-          messageDiv.style.background = 'rgba(255, 100, 0, 0.7)'; // Оранжевый фон
-          messageDiv.style.display = 'block';
-          return; // Прерываем отправку, если чекбокс не отмечен
-      }
-      
-      // Подготовка данных для API
-      const data = new URLSearchParams();
-      data.append('api_key', '6igg977o1gjmhceojy1q8bxr9qxrocyj1o3gnrcy'); 
-      data.append('list_ids', '2'); 
-      data.append('fields[email]', email);
-      data.append('fields[phone]', phone);
-      data.append('fields[Name]', name + ' ' + lastName); // UniSender обычно использует поле Name
-      data.append('double_optin', 3); // 3 - отправить письмо-приглашение, если его нет в списке
-      
-      submitButton.disabled = true; 
-      submitButton.textContent = 'Отправка...';
+          function setFieldError(inputElement, message) {
+            const errorBlock = inputElement.closest('td').querySelector('.error-block');
+            if (errorBlock) {
+              errorBlock.textContent = message;
+              errorBlock.style.display = message ? 'block' : 'none';
+            }
+            if (message) messageDiv.style.display = 'none';
+          }
+          function clearAllFieldErrors() {
+            setFieldError(nameInput, '');
+            setFieldError(lastNameInput, '');
+            setFieldError(phoneInput, '');
+            setFieldError(emailInput, '');
+          }
 
-      try {
-        const response = await fetch('https://api.unisender.com/ru/api/subscribe?format=json', {
-          method: 'POST',
-          body: data
+          messageDiv.style.display = 'none'; 
+          clearAllFieldErrors(); 
+
+          const name = nameInput.value.trim();
+          const lastName = lastNameInput.value.trim();
+          const email = emailInput.value.trim();
+          const phone = phoneInput.value.trim();
+
+          let isValid = true;
+
+          if (!name) {
+            setFieldError(nameInput, 'Пожалуйста, введите ваше имя.');
+            isValid = false;
+          }
+          if (!lastName) {
+            setFieldError(lastNameInput, 'Пожалуйста, введите вашу фамилию.');
+            isValid = false;
+          }
+          if (!email) {
+            setFieldError(emailInput, 'Пожалуйста, введите ваш email.');
+            isValid = false;
+          } else if (email.indexOf('@') === -1) {
+            setFieldError(emailInput, 'Email должен содержать символ @.');
+            isValid = false;
+          }
+          const phoneRegex = /^(?:\+7|8)\d{10}$/;
+          if (!phone) {
+            setFieldError(phoneInput, 'Пожалуйста, введите ваш телефон.');
+            isValid = false;
+          } else if (!phoneRegex.test(phone)) {
+            setFieldError(phoneInput, 'Телефон должен начинаться с +7 или 8 и содержать 10 цифр после префикса. Например: +79001234567 или 89001234567.');
+            isValid = false;
+          }
+          if (consentCheckbox && !consentCheckbox.checked) {
+              messageDiv.textContent = 'Пожалуйста, подтвердите согласие с политикой конфиденциальности.';
+              messageDiv.style.background = 'rgba(255, 100, 0, 0.7)';
+              messageDiv.style.display = 'block';
+              isValid = false; 
+          }
+
+          if (!isValid) {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Регистрация';
+            return; 
+          }
+          
+          const formData = { f_1: name, f_2: lastName, email: email, phone: phone };
+          
+          submitButton.disabled = true; 
+          submitButton.textContent = 'Отправка...';
+
+          try {
+            const response = await fetch('http://localhost:3000/api/register', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(formData)
+            });
+            const result = await response.json();
+
+            if (response.ok) {
+              messageDiv.textContent = result.message;
+              messageDiv.style.background = 'rgba(0, 128, 0, 0.7)';
+              form.reset();
+            } else {
+              console.error('Backend error details:', result);
+              messageDiv.textContent = 'Ошибка: ' + (result.message || 'Не удалось отправить данные.');
+              messageDiv.style.background = 'rgba(255, 0, 0, 0.7)';
+            }
+          } catch (error) {
+            console.error('Fetch error details:', error);
+            messageDiv.textContent = 'Ошибка сети или сервер недоступен. Попробуйте позже.';
+            messageDiv.style.background = 'rgba(255, 0, 0, 0.7)';
+          } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = 'Регистрация';
+            messageDiv.style.display = 'block';
+          }
         });
-        const result = await response.json();
-
-        if (result.result) {
-          messageDiv.textContent = 'Спасибо за регистрацию!';
-          messageDiv.style.background = 'rgba(0, 128, 0, 0.7)'; // Зеленый фон успеха
-          form.reset(); // Очищаем форму
-        } else {
-          // Показываем ошибку от UniSender
-          messageDiv.textContent = 'Ошибка: ' + (result.error || 'Не удалось отправить данные. ' + (result.code ? `Код: ${result.code}` : ''));
-          messageDiv.style.background = 'rgba(255, 0, 0, 0.7)'; // Красный фон ошибки
-        }
-      } catch (error) {
-        messageDiv.textContent = 'Ошибка сети. Попробуйте позже.';
-        messageDiv.style.background = 'rgba(255, 0, 0, 0.7)'; // Красный фон ошибки
-      } finally {
-        submitButton.disabled = false;
-        submitButton.textContent = 'Регистрация';
-        messageDiv.style.display = 'block'; // Показываем сообщение
       }
     });
   </script>
