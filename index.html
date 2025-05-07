@@ -19,6 +19,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      z-index: 1;
     }
     .hero::before {
       content: '';
@@ -32,8 +33,8 @@
     section.hero form#registration-form-api {
         position: relative;
         z-index: 2;
-        max-width: 400px; 
-        width: 90%;
+        max-width: 320px;
+        width: 90vw;
     }
 
     /* Сделать фон формы UniSender прозрачным */
@@ -67,11 +68,11 @@
     form#registration-form-api input[type="text"],
     form#registration-form-api input[type="email"],
     form#registration-form-api input[type="tel"] {
-        height: auto !important;
-        padding: 0.6rem 0.5rem !important; /* Сделаем отступы комфортнее */
-        font-size: 1rem !important;
-        line-height: 1.4 !important; /* Для лучшей читаемости */
-        background-color: rgba(255, 255, 255, 0.9) !important; /* Слегка прозрачный фон полей */
+        height: 36px !important;
+        padding: 0.5rem 0.75rem !important;
+        font-size: 15px !important;
+        line-height: 1.4 !important;
+        background-color: rgba(255, 255, 255, 0.9) !important;
         border: 1px solid #ccc !important;
     }
     form#registration-form-api input[type="checkbox"] {
@@ -113,66 +114,243 @@
     /* Стили для кнопки Регистрация - новая попытка */
     /* Нацеливаемся на TD, которая является родителем кнопки и имеет синий фон */
     section.hero form#registration-form-api table table table td[align="center"][valign="middle"][style*="background-color: #007BFF"] {
-        background-color: #B0B0B0 !important; /* Новый серый фон для TD */
+        background-color: #E0E0E0 !important; /* Светло-серый фон для TD */
     }
 
     section.hero form#registration-form-api button[type="submit"] {
-        background-color: transparent !important; /* Кнопка остается прозрачной, фон от TD */
-        color: #333333 !important; /* Темный текст для кнопки */
-        width: auto !important; /* Автоматическая ширина по содержимому */
-        min-width: 150px; /* Минимальная ширина для читаемости */
-        padding: 0.75rem 2rem !important; /* Вертикальные и горизонтальные отступы */
+        background-color: transparent !important;
+        color: #333333 !important;
+        width: 100% !important;
+        min-width: 0;
+        height: 36px !important;
+        padding: 0.5rem 0.75rem !important;
         border: none !important;
         border-radius: 4px !important;
         cursor: pointer;
-        font-size: 1rem !important;
-        display: inline-block !important; /* Чтобы width: auto работало корректно */
+        font-size: 15px !important;
+        display: block !important;
+        margin: 0 auto;
     }
 
     /* Старый селектор для TD кнопки, на всякий случай оставим, но новый выше должен быть точнее */
     section.hero form#registration-form-api table td[style*="background-color: #007BFF"] { 
-        background-color: #B0B0B0 !important; 
+        background-color: #E0E0E0 !important; 
     }
 
     /* Старый селектор для самой кнопки, по сути дублируется */
     /* form#registration-form-api button { ... } */
+
+    /* Выровнять чекбокс и текст согласия по одной линии */
+    form#registration-form-api .consent-row {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin: 18px 0 0 0;
+        justify-content: flex-start;
+    }
+    form#registration-form-api .consent-row input[type="checkbox"] {
+        margin: 0;
+        vertical-align: middle;
+    }
+    form#registration-form-api .consent-row span {
+        color: #ddd !important;
+        font-size: 0.85rem !important;
+        vertical-align: middle;
+        padding: 0;
+        display: inline;
+        white-space: nowrap;
+    }
+
+    /* Адаптивность формы и элементов */
+    @media (max-width: 480px) {
+      section.hero form#registration-form-api {
+        max-width: 98vw;
+        width: 98vw;
+        padding: 0 2vw;
+      }
+      form#registration-form-api input[type="text"],
+      form#registration-form-api input[type="email"],
+      form#registration-form-api input[type="tel"] {
+        font-size: 14px !important;
+        height: 32px !important;
+        padding: 0.4rem 0.5rem !important;
+      }
+      section.hero form#registration-form-api button[type="submit"] {
+        font-size: 14px !important;
+        height: 32px !important;
+        padding: 0.4rem 0.5rem !important;
+      }
+      form#registration-form-api .consent-row span {
+        font-size: 0.78rem !important;
+      }
+    }
+
+    /* Для всех вложенных таблиц внутри формы */
+    section.hero form#registration-form-api table,
+    section.hero form#registration-form-api table * { /* Оставляем звездочку для box-sizing и width, но не для padding */
+      width: 100% !important;
+      max-width: 100% !important;
+      min-width: 0 !important;
+      box-sizing: border-box !important;
+      /* padding-left: 0 !important;  УДАЛЕНО */
+      /* padding-right: 0 !important; УДАЛЕНО */
+    }
+    /* Для всех td внутри формы */
+    section.hero form#registration-form-api td {
+      /* width, max-width, box-sizing наследуются или применяются через table *, оставляем min-width */
+      min-width: 0 !important;
+      /* padding-left: 0 !important;  УДАЛЕНО */
+      /* padding-right: 0 !important; УДАЛЕНО */
+    }
+    /* Для всех input и button внутри формы */
+    section.hero form#registration-form-api input[type="text"],
+    section.hero form#registration-form-api input[type="email"],
+    section.hero form#registration-form-api input[type="tel"],
+    section.hero form#registration-form-api button[type="submit"] {
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box;
+    }
+    /* Медиазапрос для экранов ≤ 600px */
+    @media (max-width: 600px) { /* Расширяем этот блок или добавляем правила ниже */
+      section.hero form#registration-form-api {
+        max-width: 98vw;
+        width: 98vw;
+        padding: 0 1vw;
+      }
+
+      /* Уточненные отступы для ячеек с полями на узких экранах */
+      section.hero form#registration-form-api table table td[style*="padding: 5px 0"] {
+          padding: 3px 8px !important;
+      }
+
+      /* Отступы для строки согласия на узких экранах */
+      form#registration-form-api .consent-row {
+          margin: 10px 0 0 0 !important;
+          padding: 0 8px !important;
+      }
+
+      /* Отступы для ячейки с кнопкой на узких экранах */
+      section.hero form#registration-form-api td[style*="padding: 15px 0 0 0"] { /* Селектор для ячейки кнопки */
+          padding: 10px 8px 5px 8px !important;
+      }
+    }
+
+    #registration-form {
+      max-width: 320px;
+      width: 95vw;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+      background: transparent;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    label {
+      color: #fff;
+      font-size: 15px;
+    }
+    input[type="text"], input[type="email"], input[type="tel"], button[type="submit"] {
+      width: 100%;
+      font-size: 15px;
+      padding: 8px 10px;
+    }
+    input::placeholder {
+      color: #888;
+    }
+    button[type="submit"] {
+      width: 70%;
+      min-width: 140px;
+      max-width: 220px;
+      margin: 0 auto;
+      height: 44px;
+      font-size: 16px;
+      border-radius: 4px;
+      background: #E0E0E0;
+      color: #222;
+      border: none;
+      cursor: pointer;
+      display: block;
+    }
+    .consent-row {
+      flex-direction: row;
+      align-items: center;
+      gap: 8px;
+    }
+    @media (max-width: 480px), (max-height: 430px) {
+      #registration-form {
+        max-width: 95vw;
+        gap: 10px;
+      }
+      button[type="submit"] {
+        width: 90%;
+        min-width: 100px;
+        max-width: 180px;
+        height: 38px;
+        font-size: 14px;
+      }
+      label {
+        font-size: 13px;
+      }
+      input[type="text"], input[type="email"], input[type="tel"] {
+        font-size: 13px;
+        padding: 6px 8px;
+      }
+    }
+    @media (max-width: 400px) {
+      #registration-form {
+        max-width: 98vw;
+      }
+    }
+    @media (max-width: 600px), (max-height: 500px) {
+      #registration-form {
+        max-width: 220px;
+        width: 90vw;
+        margin: 0 auto;
+      }
+      input[type="text"], input[type="email"], input[type="tel"], button[type="submit"] {
+        width: 100%;
+        font-size: 14px;
+        padding: 8px 10px;
+      }
+    }
   </style>
 </head>
 <body>
   <section class="hero">
-      <form method="POST" id="registration-form-api">
-        <div class="container responsive"><table cellpadding="0" cellspacing="0" align="center" style="width: 100%; box-sizing: border-box;"><tbody><tr><td>
-        <!--[if (gte mso 9)|(IE)]><table cellpadding="0" cellspacing="0" border="0" width="400" align="center"><tr><td><![endif]--><table cellpadding="0" cellspacing="0" align="center" style="background-color: transparent !important; border-radius: 0px; max-width: 450px; width: 100%; border: none; margin: 0px auto; border-spacing: 0px; border-collapse: collapse;"><tbody><tr><td width="100%" style="vertical-align: top; max-width: 450px; font-size: 0px; padding: 15px !important;">
-        <!--[if (gte mso 9)|(IE)]><table cellpadding="0" cellspacing="0" border="0" width="400" align="center"><tr><td><![endif]-->                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="width: 100%; table-layout: fixed; height: auto; border-collapse: collapse; border-spacing: 0px; display: inline-table; vertical-align: top; font-size: medium;">                <tbody>
-        <tr>                    <td style="width: 100%; padding: 5px 0 !important; height: 50px;" valign="top">                        <table border="0" cellspacing="0" cellpadding="0" style="height: 100%; width: 100%; table-layout: fixed; border-spacing: 0px; border-collapse: collapse; min-height: 50px;">                            <tbody>
-        <tr>                                <td style="width: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: rgb(34, 34, 34);">                                            <div style="display:block !important; width:100% !important;font-size:0;">            <label style="font-size: 0.9rem !important; padding: 0px 0px 3px !important; vertical-align: middle; box-sizing: border-box; width: 100% !important; display: block !important; font-family: Arial, Helvetica, sans-serif; color: #ddd !important; text-align: left !important;"><span>Имя</span><b style="font-size:14px;font-family:Georgia;line-height:10px;"> *</b></label>            <div style="display: block !important; width: 100% !important;">                <input type="text" style="border-radius: 3px; font: 13px / 1.4 Arial, Helvetica; padding: 0.6rem 0.5rem !important; width: 100%; box-sizing: border-box; border: 1px solid rgb(204, 204, 204) !important; background-color: rgba(255, 255, 255, 0.9) !important; background-image: none; height: auto !important;" name="f_1" _validator="string" _label="Имя" _required="1" placeholder="">                <div class="error-block" style="display:none;color:#ff592d;font:11px/18px Arial;"></div>            </div>        </div>                                    </td>                            </tr>                        </tbody>
-        </table>                    </td>                </tr>            </tbody>
-        </table>        <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]--><!--[if (gte mso 9)|(IE)]><table cellpadding="0" cellspacing="0" border="0" width="400" align="center"><tr><td><![endif]-->                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="width: 100%; table-layout: fixed; height: auto; border-collapse: collapse; border-spacing: 0px; display: inline-table; vertical-align: top; font-size: medium;">                <tbody>
-        <tr>                    <td style="width: 100%; padding: 5px 0 !important; height: 50px;" valign="top">                        <table border="0" cellspacing="0" cellpadding="0" style="height: 100%; width: 100%; table-layout: fixed; border-spacing: 0px; border-collapse: collapse; min-height: 50px;">                            <tbody>
-        <tr>                                <td style="width: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: rgb(34, 34, 34);">                                            <div style="display:block !important; width:100% !important;font-size:0;">            <label style="font-size: 0.9rem !important; padding: 0px 0px 3px !important; vertical-align: middle; box-sizing: border-box; width: 100% !important; display: block !important; font-family: Arial, Helvetica, sans-serif; color: #ddd !important; text-align: left !important;"><span>Фамилия</span><b style="font-size:14px;font-family:Georgia;line-height:10px;"> *</b></label>            <div style="display: block !important; width: 100% !important;">                <input type="text" style="border-radius: 3px; font: 13px / 1.4 Arial, Helvetica; padding: 0.6rem 0.5rem !important; width: 100%; box-sizing: border-box; border: 1px solid rgb(204, 204, 204) !important; background-color: rgba(255, 255, 255, 0.9) !important; background-image: none; height: auto !important;" name="f_2" _validator="string" _label="Фамилия" _required="1" placeholder="">                <div class="error-block" style="display:none;color:#ff592d;font:11px/18px Arial;"></div>            </div>        </div>                                    </td>                            </tr>                        </tbody>
-        </table>                    </td>                </tr>            </tbody>
-        </table>        <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]--><!--[if (gte mso 9)|(IE)]><table cellpadding="0" cellspacing="0" border="0" width="400" align="center"><tr><td><![endif]-->                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="width: 100%; table-layout: fixed; height: auto; border-collapse: collapse; border-spacing: 0px; display: inline-table; vertical-align: top; font-size: medium;">                <tbody>
-        <tr>                    <td style="width: 100%; padding: 5px 0 !important; height: 50px;" valign="top">                        <table border="0" cellspacing="0" cellpadding="0" style="height: 100%; width: 100%; table-layout: fixed; border-spacing: 0px; border-collapse: collapse; min-height: 50px;">                            <tbody>
-        <tr>                                <td style="width: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: rgb(34, 34, 34);">                                            <div style="display:block !important; width:100% !important;font-size:0;">            <label style="font-size: 0.9rem !important; padding: 0px 0px 3px !important; vertical-align: middle; box-sizing: border-box; width: 100% !important; display: block !important; font-family: Arial, Helvetica, sans-serif; color: #ddd !important; text-align: left !important;"><span>Телефон</span><b style="font-size:14px;font-family:Georgia;line-height:10px;"> *</b></label>            <div style="display: block !important; width: 100% !important;">                <input type="text" style="border-radius: 3px; font: 13px / 1.4 Arial, Helvetica; padding: 0.6rem 0.5rem !important; width: 100%; box-sizing: border-box; border: 1px solid rgb(204, 204, 204) !important; background-color: rgba(255, 255, 255, 0.9) !important; background-image: none; height: auto !important;" name="phone" _validator="phone" _label="Телефон" _required="1" placeholder="+7">                <div class="error-block" style="display:none;color:#ff592d;font:11px/18px Arial;"></div>            </div>        </div>                                    </td>                            </tr>                        </tbody>
-        </table>                    </td>                </tr>            </tbody>
-        </table>        <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]--><!--[if (gte mso 9)|(IE)]><table cellpadding="0" cellspacing="0" border="0" width="400" align="center"><tr><td><![endif]-->                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="width: 100%; table-layout: fixed; height: auto; border-collapse: collapse; border-spacing: 0px; display: inline-table; vertical-align: top; font-size: medium;">                <tbody>
-        <tr>                    <td style="width: 100%; padding: 5px 0 !important; height: 50px;" valign="top">                        <table border="0" cellspacing="0" cellpadding="0" style="height: 100%; width: 100%; table-layout: fixed; border-spacing: 0px; border-collapse: collapse; min-height: 50px;">                            <tbody>
-        <tr>                                <td style="width: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: rgb(34, 34, 34);">                                            <div style="display:block !important; width:100% !important;font-size:0;">            <label style="font-size: 0.9rem !important; padding: 0px 0px 3px !important; vertical-align: middle; box-sizing: border-box; width: 100% !important; display: block !important; font-family: Arial, Helvetica, sans-serif; color: #ddd !important; text-align: left !important;">                <span>E-mail</span>                <b style="font-size:14px;font-family:Georgia;line-height:10px;"> *</b>            </label>            <div style="display: block !important; width: 100% !important;">                <input type="text" name="email" _validator="email" _required="1" style="border-radius: 3px; font: 13px / 1.4 Arial, Helvetica; padding: 0.6rem 0.5rem !important; width: 100%; box-sizing: border-box; border: 1px solid rgb(204, 204, 204) !important; background-color: rgba(255, 255, 255, 0.9) !important; background-image: none; height: auto !important;" _label="E-mail" placeholder="">                <div class="error-block" style="display:none;color:#ff592d;font:11px/18px Arial;"></div>            </div>        </div>                                    </td>                            </tr>                        </tbody>
-        </table>                    </td>                </tr>            </tbody>
-        </table>        <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]--><!--[if (gte mso 9)|(IE)]><table cellpadding="0" cellspacing="0" border="0" width="400" align="center"><tr><td><![endif]-->                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="width: 100%; table-layout: fixed; height: auto; border-collapse: collapse; border-spacing: 0px; display: inline-table; vertical-align: top; font-size: medium;">                <tbody>
-        <tr>                    <td style="width: 100%; padding: 8px; text-align: center;" valign="top">                        <table border="0" cellspacing="0" cellpadding="0" style="height: 100%; width: 100%; table-layout: fixed; border-spacing: 0px; border-collapse: collapse;">                            <tbody>
-        <tr>                                <td style="width:100%;">                                            <div style="display:inline-block; width:100%;">            <ul style="margin: 0; padding: 0; display: inline-block;">                <li style="list-style:none; margin: 0; padding: 0; display: inline-block;">                    <input type="checkbox" name="argument-with-terms" data-virtual-name="argument-with-terms" style="font: 12px / 1 Arial, Helvetica; vertical-align: middle; border-radius: 3px; padding: 0px 8px; box-sizing: border-box; border: none; background-color: rgba(255, 255, 255, 0.9) !important; background-image: none; width: 18px !important; height: 18px !important;" _fullerrormessage="Это поле обязательно" _required="1">                    <span style="display: inline-block; padding: 0px 0px 1px; vertical-align: middle; box-sizing: border-box; font-size: 0.9rem !important; color: #ddd !important;" tabindex="0" spellcheck="false" role="textbox" aria-label="false" aria-describedby="cke_35"> <span style="font-family:Arial,Helvetica,sans-serif;">Я согласен с политикой конфиденциальности</span> </span>                </li>            </ul>            <div class="error-block" id="consent-error" style="display:none;color:#ff592d;font:11px/18px Arial;margin-top:4px;"></div>            <div class="error-block" style="display:none;color:#ff592d;font:11px/18px Arial;"></div>        </div>                                    </td>                            </tr>                        </tbody>
-        </table>                    </td>                </tr>            </tbody>
-        </table>        <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]--><!--[if (gte mso 9)|(IE)]><table cellpadding="0" cellspacing="0" border="0" width="400" align="center"><tr><td><![endif]-->                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="width: 100%; table-layout: fixed; height: auto; border-collapse: collapse; border-spacing: 0px; display: inline-table; vertical-align: top; font-size: medium;">                <tbody>
-        <tr>                    <td style="width: 100%; background-image: none; min-height: 0px; height: 0px; padding: 15px 0 0 0 !important;" valign="top">                        <table border="0" cellspacing="0" cellpadding="0" style="height: 100%; width: 100%; table-layout: fixed; border-spacing: 0px; border-collapse: collapse; min-height: 0px;">                            <tbody>
-        <tr>                                <td style="width: 100%; text-align: center; font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: rgb(34, 34, 34);">                                            <table border="0" cellpadding="0" cellspacing="0" width="100%" style="display: inline-table; width: auto; border-spacing: 0px; border-collapse: collapse;">            <tbody>
-        <tr>                <td align="center" valign="middle" style="border: none !important; border-radius: 4px !important; padding: 0.75rem !important; background-color: #007BFF !important; height: 18.7969px; min-height: 18.7969px;">                    <button type="submit" style="width: 100% !important; display: inline-block; text-decoration: none; word-break: break-all; font-size: 1rem !important; font-family: Arial, Helvetica, sans-serif; line-height: 16.8px; color: white !important; background-color: transparent !important; border: 0px; cursor: pointer;">Регистрация</button>                </td>            </tr>        </tbody>
-        </table>                                    </td>                            </tr>                        </tbody>
-        </table>                    </td>                </tr>            </tbody>
-        </table>        <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
-        </td></tr></tbody></table>
-        <!--[if (gte mso 9)|(IE)]></td></tr></table><![endif]-->
-        </td></tr></tbody></table></div>
+      <form id="registration-form" autocomplete="off">
+        <div class="form-group">
+          <label for="name">Имя *</label>
+          <input type="text" id="name" name="name" required>
+          <div class="error-block"></div>
+        </div>
+        <div class="form-group">
+          <label for="lastname">Фамилия *</label>
+          <input type="text" id="lastname" name="lastname" required>
+          <div class="error-block"></div>
+        </div>
+        <div class="form-group">
+          <label for="phone">Телефон *</label>
+          <input type="tel" id="phone" name="phone" required placeholder="+7">
+          <div class="error-block"></div>
+        </div>
+        <div class="form-group">
+          <label for="email">E-mail *</label>
+          <input type="email" id="email" name="email" required>
+          <div class="error-block"></div>
+        </div>
+        <div class="form-group consent-row">
+          <input type="checkbox" id="consent" name="consent" required>
+          <label for="consent">Я согласен с политикой конфиденциальности</label>
+          <div class="error-block"></div>
+        </div>
+        <button type="submit">Регистрация</button>
       </form>
       <div id="form-message" style="display:none; margin-top: 1rem; padding: 1rem; background: rgba(0,0,0,0.7); border-radius: 5px; color: white; text-align: center;"></div>
     </section>
@@ -183,7 +361,7 @@
       // --- Блок изменения стилей кнопки полностью удалён ---
 
       // Обработчик отправки формы
-      const registrationForm = document.getElementById('registration-form-api');
+      const registrationForm = document.getElementById('registration-form');
       if (registrationForm) {
         registrationForm.addEventListener('submit', async function(e) {
           e.preventDefault(); 
@@ -191,14 +369,14 @@
           const submitButton = form.querySelector('button[type="submit"]');
           const messageDiv = document.getElementById('form-message');
           
-          const nameInput = form.elements['f_1'];
-          const lastNameInput = form.elements['f_2'];
+          const nameInput = form.elements['name'];
+          const lastNameInput = form.elements['lastname'];
           const phoneInput = form.elements['phone'];
           const emailInput = form.elements['email'];
-          const consentCheckbox = form.elements['argument-with-terms'];
+          const consentCheckbox = form.elements['consent'];
 
           function setFieldError(inputElement, message) {
-            const errorBlock = inputElement.closest('td').querySelector('.error-block');
+            const errorBlock = inputElement.closest('.error-block');
             if (errorBlock) {
               errorBlock.textContent = message;
               errorBlock.style.display = message ? 'block' : 'none';
@@ -265,7 +443,7 @@
             return; 
           }
           
-          const formData = { f_1: name, f_2: lastName, email: email, phone: phone };
+          const formData = { name: name, lastname: lastName, email: email, phone: phone };
           
           submitButton.disabled = true; 
           submitButton.textContent = 'Отправка...';
